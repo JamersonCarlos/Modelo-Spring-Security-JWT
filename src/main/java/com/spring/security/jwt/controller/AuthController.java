@@ -1,7 +1,9 @@
 package com.spring.security.jwt.controller;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -9,15 +11,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.spring.security.jwt.dto.LoginRequest;
 import com.spring.security.jwt.dto.LoginResponse;
+import com.spring.security.jwt.entities.Role;
 import com.spring.security.jwt.entities.User;
 import com.spring.security.jwt.services.UserService;
 
-@RestController("/auth")
+@RestController
+@RequestMapping("/auth")
 public class AuthController {
 
   @Autowired
@@ -41,14 +47,18 @@ public class AuthController {
     var now = Instant.now();
     var expiresIn = 300L;
 
-    var claims = JwtClaimsSet.builder().issuer("mybackend").subject(user.getUsername())
-        .expiresAt(now.plusSeconds(expiresIn)).issuedAt(now).build();
+    var scopes = user.getRoles().stream().map(Role::getName).collect(Collectors.joining(" "));
+
+    var claims = JwtClaimsSet.builder().issuer("mybackend").subject(user.getId().toString())
+        .expiresAt(now.plusSeconds(expiresIn)).claim("scope", scopes).issuedAt(now).build();
 
     var jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
 
     return ResponseEntity.ok(new LoginResponse(jwtValue, expiresIn));
 
   }
+
+
 
 
 }

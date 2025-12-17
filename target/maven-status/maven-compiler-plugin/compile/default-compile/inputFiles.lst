@@ -1,9 +1,11 @@
 C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\Application.java
 C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\config\AdminUserConfig.java
 C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\config\SecurityConfig.java
-C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\controller\TokenController.java
+C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\controller\AuthController.java
+C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\controller\UserController.java
 C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\dto\LoginRequest.java
 C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\dto\LoginResponse.java
+C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\dto\RegisterRequest.java
 C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\entities\Role.java
 C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\entities\Tweet.java
 C:\Users\User\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\entities\User.java

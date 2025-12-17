@@ -1,11 +1,15 @@
 package com.spring.security.jwt.controller;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.spring.security.jwt.dto.RegisterRequest;
 import com.spring.security.jwt.entities.Role;
@@ -14,21 +18,22 @@ import com.spring.security.jwt.repository.RoleRepository;
 import com.spring.security.jwt.services.UserService;
 import jakarta.transaction.Transactional;
 
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 public class UserController {
 
   @Autowired
   private UserService userService;
 
-  @Autowired 
-  private RoleRepository roleRepository; 
+  @Autowired
+  private RoleRepository roleRepository;
 
   @Transactional
   @PostMapping("/register")
   public ResponseEntity<Void> registerUser(@RequestBody RegisterRequest registerRequest) {
-    
-    Optional<Role> optRole = roleRepository.findByName("BASIC"); 
-    Role role = optRole.orElseThrow(() -> new RuntimeException( "Role not found"));
+
+    Optional<Role> optRole = roleRepository.findByName("BASIC");
+    Role role = optRole.orElseThrow(() -> new RuntimeException("Role not found"));
 
     Optional<User> existingUser = userService.isUserActive(registerRequest.username());
     if (existingUser.isPresent()) {
@@ -43,5 +48,12 @@ public class UserController {
     userService.saveUser(newUser);
 
     return ResponseEntity.ok().build();
+  }
+
+  @GetMapping("/all")
+  @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
+  public ResponseEntity<List<User>> getAllUsers() {
+    List<User> users = userService.getAllUsers();
+    return ResponseEntity.ok(users);
   }
 }
