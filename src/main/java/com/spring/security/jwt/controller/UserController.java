@@ -6,6 +6,8 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +30,9 @@ public class UserController {
   @Autowired
   private RoleRepository roleRepository;
 
+  @Autowired
+  private BCryptPasswordEncoder passwordEncoder;
+
   @Transactional
   @PostMapping("/register")
   public ResponseEntity<Void> registerUser(@RequestBody RegisterRequest registerRequest) {
@@ -42,7 +47,7 @@ public class UserController {
 
     User newUser = new User();
     newUser.setUsername(registerRequest.username());
-    newUser.setPassword(registerRequest.password());
+    newUser.setPassword(passwordEncoder.encode(registerRequest.password()));
     newUser.setRoles(Set.of(role));
 
     userService.saveUser(newUser);
