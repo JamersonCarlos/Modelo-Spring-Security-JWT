@@ -2,10 +2,14 @@ package com.spring.security.jwt.entities;
 
 
 import java.time.Instant;
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,20 +17,22 @@ import jakarta.persistence.Table;
 public class Tweet {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
-  private Long tweetId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private UUID tweetId;
 
+  @ManyToOne
+  @JoinColumn(name = "user_id")
   private User user;
 
   private String content;
 
   private Instant creationDatetime;
 
-  public Long getTweetId() {
+  public UUID getTweetId() {
     return tweetId;
   }
 
-  public void setTweetId(Long tweetId) {
+  public void setTweetId(UUID tweetId) {
     this.tweetId = tweetId;
   }
 

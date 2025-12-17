@@ -1,0 +1,7 @@
+C:\Users\jamerson\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\Application.java
+C:\Users\jamerson\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\entities\Role.java
+C:\Users\jamerson\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\entities\Tweet.java
+C:\Users\jamerson\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\entities\User.java
+C:\Users\jamerson\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\repository\RoleRepository.java
+C:\Users\jamerson\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\repository\TweetRepository.java
+C:\Users\jamerson\Documents\GitHub\Modelo-Spring-Security-JWT\src\main\java\com\spring\security\jwt\repository\UserRepository.java

@@ -1,6 +1,6 @@
 package com.spring.security.jwt.entities;
 
-import jakarta.annotation.Generated;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,10 +12,10 @@ import jakarta.persistence.Table;
 public class Role {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long roleId;
 
-  private String name;
+  private String roleName;
 
   public Long getRoleId() {
     return roleId;
@@ -25,12 +25,12 @@ public class Role {
     this.roleId = roleId;
   }
 
-  public String getName() {
-    return name;
+  public String getRoleName() {
+    return roleName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setRoleName(String roleName) {
+    this.roleName = roleName;
   }
 
 
