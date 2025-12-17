@@ -2,7 +2,8 @@ package com.spring.security.jwt.entities;
 
 import java.util.Set;
 import java.util.UUID;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
+import com.spring.security.jwt.dto.LoginRequest;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +32,10 @@ public class User {
   @JoinTable(name = "tb_user_roles", joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
+
+
+
+  public User() {}
 
   public UUID getId() {
     return id;
@@ -62,6 +67,10 @@ public class User {
 
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
+  }
+
+  public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder) {
+    return passwordEncoder.matches(loginRequest.password(), this.password);
   }
 
 
