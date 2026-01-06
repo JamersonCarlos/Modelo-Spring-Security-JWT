@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.spring.security.jwt.dto.LoginRequest;
 import com.spring.security.jwt.dto.LoginResponse;
-import com.spring.security.jwt.entities.Role;
-import com.spring.security.jwt.entities.User;
+import com.spring.security.jwt.models.Role;
+import com.spring.security.jwt.models.User;
 import com.spring.security.jwt.services.UserService;
 
 @RestController

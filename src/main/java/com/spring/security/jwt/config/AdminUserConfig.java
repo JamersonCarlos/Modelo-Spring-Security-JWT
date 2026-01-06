@@ -7,8 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import com.spring.security.jwt.entities.Role;
-import com.spring.security.jwt.entities.User;
+
+import com.spring.security.jwt.models.Role;
+import com.spring.security.jwt.models.User;
 import com.spring.security.jwt.repository.RoleRepository;
 import com.spring.security.jwt.repository.UserRepository;
 import jakarta.transaction.Transactional;

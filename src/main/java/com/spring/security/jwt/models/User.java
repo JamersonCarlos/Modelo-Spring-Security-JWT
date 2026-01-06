@@ -1,4 +1,4 @@
-package com.spring.security.jwt.entities;
+package com.spring.security.jwt.models;
 
 import java.util.Set;
 import java.util.UUID;
@@ -23,6 +23,9 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
+  
+  private String name;
+  private String authProvider;
 
   @Column(unique = true, nullable = false)
   private String username;
@@ -34,6 +37,14 @@ public class User {
   private Set<Role> roles;
 
   public User() {}
+
+  public String getAuthProvider() {
+    return authProvider;
+  }
+
+  public void setAuthProvider(String authProvider) {
+    this.authProvider = authProvider;
+  }
 
   public UUID getId() {
     return id;
@@ -81,10 +92,20 @@ public class User {
       this.roleId = roleId;
     }
 
-
     public long getRoleId() {
       return roleId;
     }
+  }
+
+
+  public String getName() {
+    return name;
+  }
+
+
+
+  public void setName(String name) {
+    this.name = name;
   }
 
 
